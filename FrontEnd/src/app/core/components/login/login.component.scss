@@ -1,0 +1,46 @@
+.loginForma {
+  border: 1px solid black;
+  border-radius: 20px;
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f7fb;
+  margin: auto;
+  padding: 20px;
+  p {
+    padding: 20px;
+    font-size: 20px;
+  }
+  button {
+    font-size: 20px;
+    width: 120px;
+  }
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 50%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #007bff; /* Plava boja kada je input fokusiran */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Blagi sjaj */
+}
+
+br {
+  margin: 5px 0;
+}
+
+.message {
+  margin-top: 20px;
+  font-size: 22px;
+  color: #e60000;
+  font-weight: bold;
+}

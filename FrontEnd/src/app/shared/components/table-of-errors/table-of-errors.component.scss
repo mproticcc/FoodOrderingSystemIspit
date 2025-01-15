@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ff6f00;
+  text-align: left;
+  padding: 10px;
+}
+
+th {
+  background-color: #ff6f00;
+  color: white;
+}
+
+td {
+  background-color: #fff;
+}
+
+td button {
+  display: inline-block;
+}

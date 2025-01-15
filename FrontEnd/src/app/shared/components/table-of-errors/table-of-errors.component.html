@@ -1,0 +1,33 @@
+<div class="navigation">
+  <button (click)="cancel()">Nazad</button>
+</div>
+<h1>Istorija greska</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Created By</th>
+      <th>Operation</th>
+      <th>Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of errorsMessages">
+      <td>{{ item.date | date : "yyyy-MM-dd HH:mm" }}</td>
+      <td>
+        {{ item.user.name }} {{ item.user.surname }}<br />
+        {{ item.user.email }}
+      </td>
+      <td>{{ item.operation }}</td>
+      <td>{{ item.message }}</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<button
+  class="dumicUCentru"
+  *ngIf="errorsMessages.length != errorsMessagesAll.length"
+  (click)="ucitajJosGreska()"
+>
+  Ucitaj jos greska
+</button>

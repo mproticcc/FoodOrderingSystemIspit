@@ -1,0 +1,41 @@
+<div class="navigation">
+  <button (click)="cancel()">Nazad</button>
+</div>
+<h2>Porudzbine korisnika</h2>
+
+<div class="filteri">
+  <h2>Filteri</h2>
+  <app-date-picker
+    (dateRangeSelected)="filtirajPoruzbinePodatumu($event)"
+  ></app-date-picker>
+
+  <p>Status:</p>
+  <select id="orderStatus" (change)="onStatusChange($event)">
+    <option value="-___-">-___-</option>
+    <option value="ORDERED">ORDERED</option>
+    <option value="PREPARING">PREPARING</option>
+    <option value="IN_DELIVERY">IN_DELIVERY</option>
+    <option value="DELIVERED">DELIVERED</option>
+    <option value="CANCELED">CANCELED</option>
+  </select>
+</div>
+
+<div class="dish-card" *ngFor="let orderItem of groupedOrdersByOrderId()">
+  <div>
+    <h3>Poruzbina: {{ orderItem.order.name }}</h3>
+    <p>Email: {{ orderItem.order.createdBy.email }}</p>
+    <p *ngIf="trackOrderPermission">Status: {{ orderItem.order.status }}</p>
+    <p>Kreirano: {{ orderItem.date | date : "yyyy-MM-dd HH:mm" }}</p>
+    <hr />
+    <h3>Porucena hrana:</h3>
+    <div *ngFor="let dish of orderItem.dishes">
+      <h4>{{ dish.name }}</h4>
+    </div>
+    <button
+      *ngIf="orderItem.order.status == 'ORDERED' && canCancelOrderPermission"
+      (click)="removeOrder(orderItem.order.id)"
+    >
+      Cancel
+    </button>
+  </div>
+</div>

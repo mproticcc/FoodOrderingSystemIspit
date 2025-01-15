@@ -1,0 +1,54 @@
+<div class="navigation">
+  <button *ngIf="permissions.length == 9" (click)="svePorudzbine()">
+    Vidi sve porudzbine
+  </button>
+  <button (click)="svojePorudzbine()">Vidi svoje porudzbine</button>
+  <button *ngIf="canReadUser" (click)="sviKorisnici()">
+    Upravljaj korisnicima
+  </button>
+  <button (click)="dodajNovoJelo()">Dodaj novo jelo</button>
+  <button *ngIf="permissions.length == 9" (click)="istorijaSvihGresaka()">
+    Istorija svih gresaka
+  </button>
+  <button (click)="istorijaKorisnickihGresaka()">
+    Istorija gresaka korisnika
+  </button>
+  <button class="logOutButton" (click)="logout()">Logout</button>
+</div>
+<br />
+<h1>Poruci hranu</h1>
+<div *ngIf="selectedDishes.length != 0">
+  <hr />
+  <div class="selektovanaHrana">
+    <h1>Selektovana hrana</h1>
+    <div>
+      <div class="dish-card" *ngFor="let dish of selectedDishes">
+        <h3>{{ dish.name }}</h3>
+        <p>{{ dish.description }}</p>
+        <p>Price: ${{ dish.price }}</p>
+        <button (click)="deleteDish(dish)">Izbaci iz korpe</button>
+      </div>
+    </div>
+    <button *ngIf="canPlaceOrderPermission" (click)="poruciHranu()">
+      Poruci
+    </button>
+  </div>
+  <hr />
+</div>
+
+<div class="dish-card" *ngFor="let dish of dishes">
+  <h3>{{ dish.name }}</h3>
+  <p>{{ dish.description }}</p>
+  <p>Price: ${{ dish.price }}</p>
+  <button *ngIf="canPlaceOrderPermission" (click)="orderDish(dish)">
+    Stavi u korpu
+  </button>
+</div>
+<br />
+<button
+  class="dumicUCentru"
+  *ngIf="dishes.length != dishesAll.length"
+  (click)="ucitajJosJela()"
+>
+  Ucitaj jos jela
+</button>

@@ -1,0 +1,97 @@
+h1,
+h2,
+h3,
+p {
+  color: #ff6f00;
+}
+
+input,
+button,
+table {
+  font-family: inherit;
+}
+
+button {
+  background-color: #ff6f00;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+.logOutButton {
+  background-color: #ff0000;
+  &:hover {
+    background-color: #890000;
+  }
+}
+
+button:hover {
+  background-color: #e65c00;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select,
+option {
+  width: 30%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.klasaDigmici {
+  margin-top: 15px;
+}
+.navigation {
+  padding-top: 10px;
+  button {
+    margin-left: 10px;
+  }
+  padding-bottom: 10px;
+  border-bottom: 2px solid black;
+  border-radius: 20px;
+}
+.dumicUCentru {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.filteri {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px;
+}
+.mat-datepicker-content {
+  z-index: 10000 !important;
+}
+
+.cdk-overlay-pane {
+  position: absolute !important;
+  z-index: 10000 !important;
+}

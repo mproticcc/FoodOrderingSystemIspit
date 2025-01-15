@@ -1,0 +1,29 @@
+<div class="navigation">
+  <button (click)="cancel()">Nazad</button>
+</div>
+<h2>Dodaj novo jelo</h2>
+<form (ngSubmit)="saveDish()" #dishForm="ngForm">
+  <input
+    type="text"
+    name="name"
+    [(ngModel)]="name"
+    placeholder="Dish Name"
+    required
+  />
+  <input
+    type="number"
+    name="price"
+    [(ngModel)]="price"
+    placeholder="Price"
+    required
+  />
+
+  <button type="submit">Save Dish</button>
+</form>
+
+<ul>
+  <li *ngFor="let dish of dishes">
+    {{ dish.name }} - ${{ dish.price }}
+    <button (click)="deleteDish(dish.id)">Delete</button>
+  </li>
+</ul>

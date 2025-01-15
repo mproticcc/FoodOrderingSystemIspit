@@ -1,0 +1,52 @@
+<div class="navigation">
+  <button *ngIf="can_place_order" (click)="cancel()">
+    Nazad na glavnu stranu
+  </button>
+  <button
+    *ngIf="can_create_users"
+    (click)="addUser()"
+    [disabled]="!can_create_users"
+  >
+    Dodaj novog korisnika
+  </button>
+  <button class="logOutButton" (click)="logout()">Logout</button>
+</div>
+
+<br />
+<div *ngIf="can_list_users">
+  <table style="width: 100%">
+    <tr>
+      <th>name</th>
+      <th>surname</th>
+      <th>email</th>
+      <th>permissions</th>
+      <th *ngIf="can_delete_users">delete</th>
+    </tr>
+    <ng-container *ngFor="let user of users.users">
+      <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.surname }}</td>
+        <ng-container *ngIf="can_edit_users">
+          <div class="updateUser" (click)="updateUser(user)">
+            <td>{{ user.email }}</td>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!can_edit_users">
+          <td>{{ user.email }}</td>
+        </ng-container>
+        <td>{{ user.permissions }}</td>
+        <td ngI>
+          <button
+            *ngIf="can_delete_users"
+            (click)="deleteUser(user.email)"
+            [disabled]="!can_delete_users"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+</div>
+{{ message }}
+<br />

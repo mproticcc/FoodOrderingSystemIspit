@@ -1,0 +1,8 @@
+<div class="loginForma">
+  <p>Email</p>
+  <input type="text" [(ngModel)]="email" />
+  <p>Password</p>
+  <input type="password" [(ngModel)]="password" />
+  <p class="message">{{ message }}</p>
+  <button (click)="login()">Login</button>
+</div>

@@ -1,0 +1,31 @@
+.update-user-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.update-user-container p {
+  margin: 5px 0;
+}
+
+.update-user-container input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.update-user-container .klasaDigmici button {
+  flex: 1;
+}
+button {
+  background-color: #ff6f00;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}

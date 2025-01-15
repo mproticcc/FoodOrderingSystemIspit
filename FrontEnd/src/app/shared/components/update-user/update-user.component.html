@@ -1,0 +1,74 @@
+<br />
+<input type="text" [(ngModel)]="user.email" />
+<br />
+<input type="text" [(ngModel)]="user.name" />
+<br />
+<input type="text" [(ngModel)]="user.surname" />
+<br />
+<input
+  type="checkbox"
+  [checked]="can_read_users"
+  (change)="can_read_users = !can_read_users"
+/>
+can_read_users
+<br />
+<input
+  type="checkbox"
+  [checked]="can_create_users"
+  (change)="can_create_users = !can_create_users"
+/>
+can_create_users
+<br />
+<input
+  type="checkbox"
+  [checked]="can_update_users"
+  (change)="can_update_users = !can_update_users"
+/>
+can_update_users
+<br />
+<input
+  type="checkbox"
+  [checked]="can_delete_users"
+  (change)="can_delete_users = !can_delete_users"
+/>
+can_delete_users
+<br />
+<input
+  type="checkbox"
+  [checked]="can_search_order"
+  (change)="can_search_order = !can_search_order"
+/>
+can_search_order
+<br />
+<input
+  type="checkbox"
+  [checked]="can_place_order"
+  (change)="can_place_order = !can_place_order"
+/>
+can_place_order
+<br />
+<input
+  type="checkbox"
+  [checked]="can_cancel_order"
+  (change)="can_cancel_order = !can_cancel_order"
+/>
+can_cancel_order
+<br />
+<input
+  type="checkbox"
+  [checked]="can_track_order"
+  (change)="can_track_order = !can_track_order"
+/>
+can_track_order
+<br />
+<input
+  type="checkbox"
+  [checked]="can_schedule_order"
+  (change)="can_schedule_order = !can_schedule_order"
+/>
+can_schedule_order
+<br />
+<div class="klasaDigmici">
+  <button (click)="updateUser()">Update User</button>
+  <button (click)="cancel()">Cancel</button>
+</div>
