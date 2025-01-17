@@ -29,9 +29,23 @@
         <button (click)="deleteDish(dish)">Izbaci iz korpe</button>
       </div>
     </div>
-    <button *ngIf="canPlaceOrderPermission" (click)="poruciHranu()">
-      Poruci
-    </button>
+    <div class="dugmici">
+      <button *ngIf="canPlaceOrderPermission" (click)="poruciHranu()">
+        Poruci
+      </button>
+      <div class="zakazi" *ngIf="canScheduleOrder">
+        <button *ngIf="canPlaceOrderPermission" (click)="zakaziHranu()">
+          Zakazi
+        </button>
+        <input
+          id="start"
+          type="datetime-local"
+          [value]="scheduleValue"
+          required
+          (change)="onDateTimeChange($event)"
+        />
+      </div>
+    </div>
   </div>
   <hr />
 </div>

@@ -13,6 +13,23 @@
 .dish-card h3 {
   color: #ff6f00;
 }
+.dugmici {
+  display: inline-flex;
+  padding: 10px;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    margin: 10px;
+  }
+  .zakazi {
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-left: 20px;
+    padding: 10px;
+  }
+}
 
 .dish-card button {
   margin-top: 10px;

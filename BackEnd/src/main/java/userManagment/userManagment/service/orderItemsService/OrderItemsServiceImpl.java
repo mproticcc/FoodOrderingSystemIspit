@@ -5,20 +5,28 @@ import org.springframework.objenesis.instantiator.basic.AccessibleInstantiator;
 import org.springframework.stereotype.Service;
 import userManagment.userManagment.db.*;
 import userManagment.userManagment.domain.*;
+import userManagment.userManagment.dtos.user.OrderRequest;
 import userManagment.userManagment.exceptions.LimitOrderException;
 import userManagment.userManagment.exceptions.NoUserException;
 import userManagment.userManagment.exceptions.NotAuthorizedException;
 import userManagment.userManagment.security.MyTokenService;
 
 import javax.transaction.Transactional;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 
 @Service
 public class OrderItemsServiceImpl implements OrderItemsService {
     private static final int MAX_ACTIVE_ORDERS = 3;
+
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
     @Autowired
     private OrderItemsRepository orderItemsRepository;
 
@@ -61,7 +69,18 @@ public class OrderItemsServiceImpl implements OrderItemsService {
     public List<OrderItems> findByOrderId(String jwt, Long orderId) {
         return orderItemsRepository.findByOrderId(orderId);
     }
+    @Override
+    public boolean scheduleOrder(String jwt,OrderRequest request) {
+        checkPermission(jwt, "can_schedule_order");
+        long delay = Duration.between(LocalDateTime.now(), request.getDate()).toMillis();
 
+        scheduler.schedule(() -> {
+            save(jwt,request.getUserId(), request.getDishes());
+            System.out.println(delay);
+        }, delay, TimeUnit.MILLISECONDS);
+
+        return true;
+    }
     @Override
     @Transactional
     public OrderItems save(String jwt, Long userId, List<Dish> dishes) {

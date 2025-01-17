@@ -19,6 +19,8 @@ export class DishesComponent {
   canReadUser: boolean = false;
   userId: number = this.perrmissionService.userId;
   dishesToLoad: number = 10;
+  scheduleValue: string = '';
+  canScheduleOrder: boolean = false;
 
   constructor(
     private dishService: DishService,
@@ -31,6 +33,7 @@ export class DishesComponent {
     this.permissions = this.perrmissionService.getPermissions();
     this.isUserHaveCanPlaceOrderPermission();
     this.isUserHavecanReadUserPermission();
+    this.isUsercanScheduleOrderPermission();
     this.loadDishes();
   }
 
@@ -40,6 +43,11 @@ export class DishesComponent {
       this.dishesAll = data;
       this.dishes = this.dishesAll!.slice(0, this.dishesToLoad);
     });
+  }
+  onDateTimeChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const selectedDateTime = input.value;
+    this.scheduleValue = selectedDateTime;
   }
 
   orderDish(dish: any) {
@@ -65,6 +73,30 @@ export class DishesComponent {
   }
   istorijaKorisnickihGresaka(): void {
     this.router.navigate(['/dishes/users-errors']);
+  }
+  zakaziHranu(): void {
+    if (this.scheduleValue == '') {
+      alert('Morate odabrati datum!!!');
+      return;
+    }
+    this.orderItemsService
+      .scheduleOrderItems(this.selectedDishes, this.userId, this.scheduleValue)
+      .pipe(take(1))
+      .subscribe({
+        next: (response) => {
+          alert(response);
+          this.selectedDishes = [];
+        },
+        error: (error) => {
+          if (error.error && error.error.text) {
+            alert(error.error.text);
+            this.selectedDishes = [];
+          } else {
+            alert(error);
+            this.selectedDishes = [];
+          }
+        },
+      });
   }
   poruciHranu(): void {
     this.orderItemsService
@@ -113,6 +145,15 @@ export class DishesComponent {
     this.perrmissionService.getPermissions().forEach((val) => {
       if (val == 'can_read_users') {
         this.canReadUser = true;
+      }
+    });
+  }
+
+  private isUsercanScheduleOrderPermission(): void {
+    this.canScheduleOrder = false;
+    this.perrmissionService.getPermissions().forEach((val) => {
+      if (val == 'can_schedule_order') {
+        this.canScheduleOrder = true;
       }
     });
   }

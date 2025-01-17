@@ -45,6 +45,26 @@ export class OrderItemsService {
       headers: header,
     });
   }
+  scheduleOrderItems(
+    dishes: any[],
+    userId: number,
+    date: any
+  ): Observable<any> {
+    const header = new HttpHeaders().set(
+      'Authorization',
+      localStorage.getItem('token')!
+    );
+
+    const requestBody = {
+      dishes: dishes,
+      userId: userId,
+      date: date,
+    };
+
+    return this.http.post(`${this.apiUrl}/schedule`, requestBody, {
+      headers: header,
+    });
+  }
 
   updateOrderItem(id: number, orderItem: any): Observable<any> {
     const header = new HttpHeaders().set(
