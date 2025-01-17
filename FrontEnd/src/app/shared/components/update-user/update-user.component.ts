@@ -22,7 +22,6 @@ export class UpdateUserComponent {
   can_schedule_order: boolean = false;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private service: BackService,
     private router: Router,
     private perrmisionServie: PerrmissionService
@@ -87,8 +86,11 @@ export class UpdateUserComponent {
     if (this.can_schedule_order) {
       permissions.push('can_schedule_order');
     }
-
+    if (this.user.id == this.perrmisionServie.userId) {
+      this.perrmisionServie.permissions = permissions;
+    }
     this.user.permissions = permissions;
+
     this.service.updateUser(this.user).subscribe((val) => {
       localStorage.removeItem('user');
       this.router.navigate(['/users']);
