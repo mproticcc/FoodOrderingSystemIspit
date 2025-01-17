@@ -4,17 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PerrmissionService {
-  permissions: string[] = [
-    'can_create_users',
-    'can_read_users',
-    'can_update_users',
-    'can_delete_users',
-    'can_search_order',
-    'can_place_order',
-    'can_cancel_order',
-    'can_track_order',
-    'can_schedule_order',
-  ];
+  permissions: string[] = [];
 
   userId: number = 1;
 

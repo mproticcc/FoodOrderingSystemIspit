@@ -76,7 +76,6 @@ public class OrderItemsServiceImpl implements OrderItemsService {
 
         scheduler.schedule(() -> {
             save(jwt,request.getUserId(), request.getDishes());
-            System.out.println(delay);
         }, delay, TimeUnit.MILLISECONDS);
 
         return true;
@@ -88,7 +87,6 @@ public class OrderItemsServiceImpl implements OrderItemsService {
 
         // Provera maksimalnog broja aktivnih porudžbina
         long activeOrdersCount = ordersRepository.countByStatusIn(List.of("PREPARING", "IN_DELIVERY"));
-        System.out.println(activeOrdersCount);
         if (activeOrdersCount >= MAX_ACTIVE_ORDERS) {
             String errorMessage = "Maksimalan broj istovremenih porudžbina je dostignut.";
             User user = userRepository.findById(userId)
@@ -99,8 +97,6 @@ public class OrderItemsServiceImpl implements OrderItemsService {
             errorLog.setUser(user);
             errorLog.setOperation("CREATE_ORDER");
             errorLog.setMessage(errorMessage);
-
-            System.out.println(errorLog.toString());
             errorMessageRepository.save(errorLog);
 
             return null;

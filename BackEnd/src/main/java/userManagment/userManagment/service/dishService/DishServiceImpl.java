@@ -48,7 +48,6 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public Optional<Dish> findById(String jwt, Long id) {
-//        checkPermission(jwt, "can_search_order");
         return dishRepository.findById(id);
     }
 
